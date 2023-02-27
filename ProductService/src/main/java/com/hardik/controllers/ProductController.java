@@ -21,7 +21,6 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<Object> getProducts(){
-
         return new ResponseEntity<>(productService.getProducts(),HttpStatus.OK);
     }
 
@@ -29,5 +28,11 @@ public class ProductController {
     public ResponseEntity<Object> addProduct(@RequestBody ProductRequest productRequest){
         productService.addProduct(productRequest);
         return new ResponseEntity<>("product added" , HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Object> deleteProduct(@PathVariable("userId") Integer id){
+        productService.deleteProduct(id);
+        return new ResponseEntity<>("Product with id "+id+" deleted",HttpStatus.OK);
     }
 }

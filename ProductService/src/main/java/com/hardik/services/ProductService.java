@@ -44,4 +44,8 @@ public class ProductService {
                 build();
     }
 
+    public void deleteProduct(Integer id) {
+        productRepository.deleteById(id);
+        logger.info("Product with id "+id+" deleted!");
+    }
 }
