@@ -1,2 +1,2 @@
-# eStore
-eStore application built on microservices architecture
+# E-Shopping application
+Online Shopping application built on microservices architecture
