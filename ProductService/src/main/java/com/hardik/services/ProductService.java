@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -18,7 +19,7 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    private Logger logger = Logger.getLogger("ProductService.class");
+    private final Logger logger = Logger.getLogger("ProductService.class");
 
     public void addProduct(ProductRequest productRequest){
         Product product = Product.builder().
