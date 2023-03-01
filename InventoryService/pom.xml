@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.hardik</groupId>
-	<artifactId>OrderService</artifactId>
+	<artifactId>InventoryService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>OrderService</name>
-	<description>Order Service for E-Shopping application</description>
+	<name>InventoryService</name>
+	<description>Inventory Service for  E-Shopping application</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -51,7 +51,7 @@
 				<configuration>
 					<excludes>
 						<exclude>
-							<groupId>org.project-lombok</groupId>
+							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>

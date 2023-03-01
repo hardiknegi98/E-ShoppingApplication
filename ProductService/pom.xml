@@ -12,7 +12,7 @@
 	<artifactId>ProductService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ProductService</name>
-	<description>Product Service for E-Store Application</description>
+	<description>Product Service for E-Shopping Application</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
