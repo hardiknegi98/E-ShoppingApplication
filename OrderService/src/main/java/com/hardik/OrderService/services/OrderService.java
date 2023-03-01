@@ -1,7 +1,9 @@
 package com.hardik.OrderService.services;
 
+import com.hardik.OrderService.dto.InventoryResponse;
 import com.hardik.OrderService.dto.OrderLineItemsDto;
 import com.hardik.OrderService.dto.OrderRequest;
+import com.hardik.OrderService.exceptions.OrderException;
 import com.hardik.OrderService.models.Order;
 import com.hardik.OrderService.models.OrderLineItems;
 import com.hardik.OrderService.repositories.OrderRepository;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,22 +21,30 @@ public class OrderService {
     OrderRepository orderRepository;
     @Autowired
     WebClient webClient;
+    Logger logger = Logger.getLogger("OrderService.class");
 
-    public void placeOrder(OrderRequest orderRequest) {
+    public void placeOrder(OrderRequest orderRequest) throws OrderException {
         Order order = new Order();
         order.setOrderNumber(UUID.randomUUID().toString());
         order.setOrderLineItems(mapOrderLineItemsDto(orderRequest));
 
-        //call inventory service and check if products in order are available in stock
-        Boolean inStock = webClient.get()
-                .uri("http://localhost:8003/api/inventory")
+        List<String> skuCodeList = order.getOrderLineItems().stream()
+                .map(OrderLineItems::getSkuCode)
+                .collect(Collectors.toList());
+        //order service communicates with inventory service to check if products in order are available in stock
+        InventoryResponse[] inventoryResponseArray = webClient.get()
+                .uri("http://localhost:8003/api/inventory",
+                        uriBuilder -> uriBuilder.queryParam("skuCode", skuCodeList).build())
                 .retrieve()
-                .bodyToMono(Boolean.class)
+                .bodyToMono(InventoryResponse[].class)
                 .block();
-        if (Boolean.TRUE.equals(inStock))
-            orderRepository.save(order);
-        else
-            throw new IllegalArgumentException("Product is not in stock");
+
+        for (InventoryResponse inventoryResponse : inventoryResponseArray) {
+            if (!inventoryResponse.isInStock())
+                throw new OrderException("Order NOT placed sucessfully! "+inventoryResponse.getSkuCode()+" is not in stock");
+        }
+        logger.info("Order placed successfully");
+        orderRepository.save(order);
     }
 
     private List<OrderLineItems> mapOrderLineItemsDto(OrderRequest orderRequest) {
