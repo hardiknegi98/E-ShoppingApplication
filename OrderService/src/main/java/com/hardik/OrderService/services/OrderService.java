@@ -20,7 +20,7 @@ public class OrderService {
     @Autowired
     OrderRepository orderRepository;
     @Autowired
-    WebClient webClient;
+    WebClient.Builder webClientBuilder;
     Logger logger = Logger.getLogger("OrderService.class");
 
     public void placeOrder(OrderRequest orderRequest) throws OrderException {
@@ -32,8 +32,8 @@ public class OrderService {
                 .map(OrderLineItems::getSkuCode)
                 .collect(Collectors.toList());
         //order service communicates with inventory service to check if products in order are available in stock
-        InventoryResponse[] inventoryResponseArray = webClient.get()
-                .uri("http://localhost:8003/api/inventory",
+        InventoryResponse[] inventoryResponseArray = webClientBuilder.build().get()
+                .uri("http://inventory-service/api/inventory",
                         uriBuilder -> uriBuilder.queryParam("skuCode", skuCodeList).build())
                 .retrieve()
                 .bodyToMono(InventoryResponse[].class)
