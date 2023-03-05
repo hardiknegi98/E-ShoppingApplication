@@ -19,4 +19,10 @@ public class InventoryController {
     public List<InventoryResponse> checkAvailability(@RequestParam List<String> skuCode){
         return inventoryService.checkAvailability(skuCode);
     }
+
+   /* @GetMapping //Check Full Inventory
+    @ResponseStatus(HttpStatus.OK)
+    public List<InventoryResponse> checkAvailabilityOfAllProducts(@RequestParam String cfi){
+        return inventoryService.checkAvailabilityOfAllProducts();
+    }*/
 }

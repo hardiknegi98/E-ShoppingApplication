@@ -24,4 +24,14 @@ public class InventoryService {
                                 build()
                 ).collect(Collectors.toList());
     }
+
+    public List<InventoryResponse> checkAvailabilityOfAllProducts() {
+        List<Inventory> inventoryList =  inventoryRepository.findAll();
+        return inventoryList.stream().map(inventory ->
+                InventoryResponse.builder().
+                        skuCode(inventory.getSkuCode()).
+                        isInStock(inventory.getQuantity() > 0).
+                        build()
+        ).collect(Collectors.toList());
+    }
 }
