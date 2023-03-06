@@ -22,7 +22,7 @@ public class OrderController {
     OrderService orderService;
 
     @PostMapping
-    @CircuitBreaker(name="inventory service",fallbackMethod="fallBackMethod")
+    @CircuitBreaker(name="inventory",fallbackMethod="fallBackMethod")
     public ResponseEntity<Object> placeOrder(@RequestBody OrderRequest orderRequest) {
         try {
             orderService.placeOrder(orderRequest);
