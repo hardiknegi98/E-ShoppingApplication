@@ -3,11 +3,13 @@ package com.hardik.OrderService.services;
 import com.hardik.OrderService.dto.InventoryResponse;
 import com.hardik.OrderService.dto.OrderLineItemsDto;
 import com.hardik.OrderService.dto.OrderRequest;
+import com.hardik.OrderService.event.OrderPlacedEvent;
 import com.hardik.OrderService.exceptions.OrderException;
 import com.hardik.OrderService.models.Order;
 import com.hardik.OrderService.models.OrderLineItems;
 import com.hardik.OrderService.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import java.util.List;
@@ -17,11 +19,14 @@ import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
+    Logger logger = Logger.getLogger("OrderService.class");
     @Autowired
     OrderRepository orderRepository;
     @Autowired
     WebClient.Builder webClientBuilder;
-    Logger logger = Logger.getLogger("OrderService.class");
+    @Autowired
+    KafkaTemplate<String,OrderPlacedEvent> kafkaTemplate;
+
 
     public void placeOrder(OrderRequest orderRequest) throws OrderException {
         Order order = new Order();
@@ -45,6 +50,7 @@ public class OrderService {
         }
         logger.info("Order placed successfully");
         orderRepository.save(order);
+        kafkaTemplate.send("notificationTopic",new OrderPlacedEvent(order.getOrderNumber())); //send order number as event to notification topic, event will be consumed by notification service
     }
 
     private List<OrderLineItems> mapOrderLineItemsDto(OrderRequest orderRequest) {
