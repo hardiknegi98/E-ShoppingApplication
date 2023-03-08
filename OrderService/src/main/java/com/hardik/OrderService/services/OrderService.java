@@ -25,7 +25,7 @@ public class OrderService {
     @Autowired
     WebClient.Builder webClientBuilder;
     @Autowired
-    KafkaTemplate<String,OrderPlacedEvent> kafkaTemplate;
+    KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;
 
 
     public void placeOrder(OrderRequest orderRequest) throws OrderException {
@@ -50,7 +50,8 @@ public class OrderService {
         }
         logger.info("Order placed successfully");
         orderRepository.save(order);
-        kafkaTemplate.send("notificationTopic",new OrderPlacedEvent(order.getOrderNumber())); //send order number as event to notification topic, event will be consumed by notification service
+        //send order number as event to notification topic, event will be consumed by notification service
+        kafkaTemplate.send("notificationTopic",new OrderPlacedEvent(order.getOrderNumber()));
     }
 
     private List<OrderLineItems> mapOrderLineItemsDto(OrderRequest orderRequest) {

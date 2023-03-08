@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="API-Gateway" />
+        <module name="NotificationService" />
         <module name="discovery-server" />
         <module name="OrderService" />
         <module name="ProductService" />
@@ -19,6 +20,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="API-Gateway" options="-parameters" />
       <module name="InventoryService" options="-parameters" />
+      <module name="NotificationService" options="-parameters" />
       <module name="OrderService" options="-parameters" />
       <module name="ProductService" options="-parameters" />
       <module name="discovery-server" options="-parameters" />

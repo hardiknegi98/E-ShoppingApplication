@@ -1,6 +1,5 @@
 package com.hardik.OrderService.dto;
 
-import com.hardik.OrderService.models.OrderLineItems;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

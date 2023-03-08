@@ -1,14 +1,12 @@
 package com.hardik.OrderService.controllers;
 
 import com.hardik.OrderService.dto.OrderRequest;
-import com.hardik.OrderService.event.OrderPlacedEvent;
 import com.hardik.OrderService.exceptions.OrderException;
 import com.hardik.OrderService.services.OrderService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
