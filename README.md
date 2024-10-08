@@ -10,7 +10,8 @@ API Gateway
 Frontend 
 
 # Architecture
-![Architecture](https://github.com/user-attachments/assets/c8365c29-0935-4202-9fc6-76202d22ed93)
+![Architecture](https://github.com/user-attachments/assets/c8a497c3-5345-423b-9079-fd63270d2627)
+
 
 # Frontend
 Adding product webpage
