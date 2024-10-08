@@ -12,10 +12,15 @@ Frontend
 # Architecture
 ![Architecture](https://github.com/user-attachments/assets/c8365c29-0935-4202-9fc6-76202d22ed93)
 
+# Frontend
+Adding product webpage
 ![addProduct](https://github.com/user-attachments/assets/f777e41f-e71a-413f-8b04-1200ea29568d)
 
-![OrderWebPage](https://github.com/user-attachments/assets/07abf7c7-4fa6-4a7f-9ddb-6c97e29fe699)
+Order webpage
+![OrderWebPage](https://github.com/user-attachments/assets/ff401c93-7ae4-4a28-bcad-3f58c8754bea)
 
+Order placed webpage
 ![OrderPlacedSuccessfully](https://github.com/user-attachments/assets/0cf860b6-813e-439e-9f6a-89292a61e578)
 
-![OrderFailedDueToQuantityNotProvided](https://github.com/user-attachments/assets/4dee37f8-1cb2-4c4d-9f09-c5be41000564)
+Order Failed webpage
+![OrderFailedDueToQuantityNotSpecified](https://github.com/user-attachments/assets/bc42e453-85f7-45d5-a36c-f16402280f27)
