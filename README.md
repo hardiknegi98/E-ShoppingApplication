@@ -13,7 +13,7 @@ Online Shopping application built in microservices architecture using Spring boo
 ![Architecture](https://github.com/user-attachments/assets/c8a497c3-5345-423b-9079-fd63270d2627)
 
 
-# Frontend
+# Snippets
 Adding product webpage
 ![addProduct](https://github.com/user-attachments/assets/f777e41f-e71a-413f-8b04-1200ea29568d)
 
