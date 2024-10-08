@@ -2,12 +2,12 @@
 Online Shopping application built in microservices architecture using Spring boot for backend development and Angular for frontend development
 
 # Services
-Product Service
-Order Service
-Inventory Service
-Notification Service
-API Gateway 
-Frontend 
+* Product Service
+* Order Service
+* Inventory Service
+* Notification Service
+* API Gateway 
+* Frontend 
 
 # Architecture
 ![Architecture](https://github.com/user-attachments/assets/c8a497c3-5345-423b-9079-fd63270d2627)
